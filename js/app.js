@@ -269,3 +269,114 @@ function initPageTransitions() {
 document.addEventListener("DOMContentLoaded", () => {
   initPageTransitions();
 });
+
+function initCountryDossierPage() {
+  const titleEl = document.getElementById("dossierTitle");
+  if (!titleEl) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const codeParam = (params.get("code") || "ES").toUpperCase();
+  const country = EUROPE_DATA.find((c) => c.code === codeParam) || EUROPE_DATA[0];
+
+  const switcher = document.getElementById("countrySwitcherSelect");
+  if (switcher) {
+    switcher.innerHTML = EUROPE_DATA.map(
+      (c) => `<option value="${c.code}" ${c.code === country.code ? "selected" : ""}>${c.name} (${c.code})</option>`
+    ).join("");
+
+    switcher.addEventListener("change", (e) => {
+      window.location.href = `pais.html?code=${e.target.value}`;
+    });
+  }
+
+  document.title = `${country.name.toUpperCase()} (${country.code}) // EUROSTAT NEXUS`;
+  document.getElementById("dossierRegionTag").textContent = country.regionLabel;
+  titleEl.innerHTML = `${country.name} <span class="accent-italic">//</span> ${country.code}`;
+  document.getElementById("dossierDesc").textContent = country.desc;
+
+  document.getElementById("dGdp").textContent = country.gdp.toFixed(2);
+  document.getElementById("dGrowth").textContent = `+${country.growth.toFixed(1)}%`;
+  document.getElementById("dInf").textContent = `${country.inflation.toFixed(1)}%`;
+
+  const tradeEl = document.getElementById("dTrade");
+  tradeEl.textContent = country.trade;
+  tradeEl.className = `kpi-number ${country.trade.startsWith("+") ? "up" : "down"}`;
+
+  document.getElementById("dCodeBadge").textContent = `CÓDIGO ISO: ${country.code}`;
+  document.getElementById("dSectorShare").textContent = `${country.share}%`;
+  document.getElementById("dSectorBar").style.width = `${country.share}%`;
+  document.getElementById("dSectorName").textContent = country.sector;
+
+  const qFactors = [0.85, 0.95, 1.05, 1.15];
+  const quarters = ["Q1-26", "Q2-26", "Q3-26", "Q4-26"];
+  const qContainer = document.getElementById("quarterlyBars");
+  if (qContainer) {
+    qContainer.innerHTML = quarters.map((q, idx) => {
+      const val = (country.growth * qFactors[idx]).toFixed(2);
+      const pct = Math.min((parseFloat(val) / 4.0) * 100, 100);
+      return `
+        <div class="bar-row">
+          <span class="bar-code">${q}</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: ${pct}%"></div>
+          </div>
+          <span class="bar-val">+${val}%</span>
+        </div>
+      `;
+    }).join("");
+  }
+}
+
+function initBilateralPage() {
+  const selectA = document.getElementById("partnerASelect");
+  const selectB = document.getElementById("partnerBSelect");
+  if (!selectA || !selectB) return;
+
+  const optionsHtml = EUROPE_DATA.map((c) => `<option value="${c.code}">${c.name} (${c.code})</option>`).join("");
+  selectA.innerHTML = optionsHtml;
+  selectB.innerHTML = optionsHtml;
+
+  selectA.value = "ES";
+  selectB.value = "DE";
+
+  function updateComparison() {
+    const a = EUROPE_DATA.find((c) => c.code === selectA.value) || EUROPE_DATA[0];
+    const b = EUROPE_DATA.find((c) => c.code === selectB.value) || EUROPE_DATA[1];
+
+    const renderMiniCard = (c) => `
+      <h3 class="inspector-name" style="margin-bottom:0.4rem;">${c.name} (${c.code})</h3>
+      <p class="inspector-desc" style="margin-bottom:0.9rem;">${c.sector}</p>
+      <div class="inspector-metrics-grid">
+        <div class="insp-metric"><span>PIB NOMINAL</span><strong>${c.gdp.toFixed(2)} B €</strong></div>
+        <div class="insp-metric"><span>CRECIMIENTO</span><strong class="up">+${c.growth.toFixed(1)}%</strong></div>
+      </div>
+    `;
+
+    document.getElementById("partnerACard").innerHTML = renderMiniCard(a);
+    document.getElementById("partnerBCard").innerHTML = renderMiniCard(b);
+
+    const estVolume = a.code === b.code ? 0 : ((a.gdp * b.gdp) * 14.5 + 18).toFixed(1);
+    const diff = (a.growth - b.growth).toFixed(1);
+
+    document.getElementById("bilateralVolume").textContent = estVolume;
+    document.getElementById("bilateralDiff").textContent = `${diff >= 0 ? "+" : ""}${diff}%`;
+    document.getElementById("bilateralLeader").textContent =
+      a.code === b.code
+        ? "Selecciona dos países distintos"
+        : parseFloat(diff) >= 0
+          ? `${a.name} crece más rápido que ${b.name}`
+          : `${b.name} crece más rápido que ${a.name}`;
+
+    document.getElementById("bilateralSynergy").textContent = a.region !== b.region ? "MUY ALTA" : "ALTA";
+    document.getElementById("bilateralNote").textContent = `${a.sector.split(" ")[0]} ↔ ${b.sector.split(" ")[0]}`;
+  }
+
+  selectA.addEventListener("change", updateComparison);
+  selectB.addEventListener("change", updateComparison);
+  updateComparison();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initCountryDossierPage();
+  initBilateralPage();
+});

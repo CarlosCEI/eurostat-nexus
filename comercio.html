@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CORREDORES BILATERALES // EUROSTAT NEXUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div class="eur-ticker-bar" aria-label="Indicadores financieros en tiempo real">
+    <div class="ticker-badge">LIVE // EUROZONE</div>
+    <div class="ticker-track-wrapper">
+      <div class="ticker-track">
+        <span class="ticker-item">COMERCIO INTRA-UE <strong>4.12 B €</strong> <em class="up">+3.8%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">ARANCEL INTERIOR UE <strong>0.00%</strong> <em class="neutral">MERCADO ÚNICO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CORREDOR ATLÁNTICO <strong>+5.2% VOL</strong> <em class="up">ACTIVO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CORREDOR RENANO <strong>+2.9% VOL</strong> <em class="up">ACTIVO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">COMERCIO INTRA-UE <strong>4.12 B €</strong> <em class="up">+3.8%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">ARANCEL INTERIOR UE <strong>0.00%</strong> <em class="neutral">MERCADO ÚNICO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CORREDOR ATLÁNTICO <strong>+5.2% VOL</strong> <em class="up">ACTIVO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CORREDOR RENANO <strong>+2.9% VOL</strong> <em class="up">ACTIVO</em></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="eur-shell">
+
+    <header class="eur-editorial-header">
+      <div class="header-meta-row">
+        <span class="meta-tag">MERCADO ÚNICO // Q4-2026</span>
+        <span class="meta-tag">ANÁLISIS BILATERAL</span>
+        <span class="meta-tag">ADUANAS & FLUJOS</span>
+      </div>
+
+      <div class="header-main-grid">
+        <div class="header-title-block">
+          <h1 class="editorial-title">
+            <span class="reveal-line">CORREDORES <span class="accent-italic">//</span> BILATERALES</span>
+          </h1>
+          <p class="editorial-subtitle">
+            Comparador directo entre economías europeas, volumen estimado de intercambio comercial 
+            y sinergias industriales dentro del Mercado Único.
+          </p>
+        </div>
+
+        <div class="header-controls">
+          <button id="themeToggleBtn" class="brutal-btn" type="button">
+            <span class="btn-dot"></span>
+            <span id="themeBtnText">MODO TERMINAL OSCURO</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="eur-nav-tabs" aria-label="Navegación principal">
+        <a href="index.html" class="nav-tab-link">01 // PANEL GENERAL UE</a>
+        <a href="pais.html?code=ES" class="nav-tab-link">02 // DOSSIER POR PAÍS</a>
+        <a href="comercio.html" class="nav-tab-link active">03 // CORREDORES BILATERALES</a>
+      </nav>
+    </header>
+
+    <section class="eur-map-stage">
+      <div class="stage-topbar">
+        <div>
+          <span class="section-code">COMPARADOR CARA A CARA</span>
+          <h2 class="section-heading">Selecciona Dos Economías Europeas</h2>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="eur-country-inspector">
+          <div class="slider-label-row">
+            <label for="partnerASelect">SOCIO EXPORTADOR A</label>
+            <span class="meta-tag">ORIGEN</span>
+          </div>
+          <select id="partnerASelect" class="brutal-select" style="width: 100%; margin-bottom: 1rem;"></select>
+          <div id="partnerACard"></div>
+        </div>
+
+        <div class="vs-badge">VS</div>
+
+        <div class="eur-country-inspector">
+          <div class="slider-label-row">
+            <label for="partnerBSelect">SOCIO COMERCIAL B</label>
+            <span class="meta-tag">DESTINO</span>
+          </div>
+          <select id="partnerBSelect" class="brutal-select" style="width: 100%; margin-bottom: 1rem;"></select>
+          <div id="partnerBCard"></div>
+        </div>
+      </div>
+
+      <div class="eur-kpi-ribbon" style="margin-bottom: 0;">
+        <article class="kpi-card">
+          <span class="kpi-label">FLUJO BILATERAL ESTIMADO</span>
+          <div class="kpi-value-row">
+            <span class="kpi-number" id="bilateralVolume">0.0</span>
+            <span class="kpi-unit">MM €</span>
+          </div>
+          <span class="kpi-delta up">Intercambio anual de bienes y servicios</span>
+        </article>
+
+        <article class="kpi-card">
+          <span class="kpi-label">DIFERENCIAL DE CRECIMIENTO</span>
+          <div class="kpi-value-row">
+            <span class="kpi-number" id="bilateralDiff">0.0%</span>
+          </div>
+          <span class="kpi-delta" id="bilateralLeader">Comparativa de dinamismo PIB</span>
+        </article>
+
+        <article class="kpi-card">
+          <span class="kpi-label">COMPLEMENTARIEDAD SECTORIAL</span>
+          <div class="kpi-value-row">
+            <span class="kpi-number" id="bilateralSynergy">ALTA</span>
+          </div>
+          <span class="kpi-delta up" id="bilateralNote">Cadenas de suministro integradas</span>
+        </article>
+      </div>
+    </section>
+
+    <footer class="eur-footer">
+      <span>EUROSTAT // NEXUS — TERMINAL DE COMERCIO BILATERAL</span>
+      <a href="index.html" class="nav-tab-link">← VOLVER AL MAPA GENERAL</a>
+    </footer>
+
+  </main>
+</body>
+</html>
