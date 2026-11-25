@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="app.js"></script>
 </head>
 <body>
 
@@ -259,3 +260,152 @@
         </aside>
       </div>
     </section>
+
+    <section class="eur-analytics-grid">
+      <article class="analytics-card">
+        <div class="card-head">
+          <div>
+            <span class="section-code">02 // COMPARATIVA DE CRECIMIENTO</span>
+            <h2 class="section-heading">Variación Real del PIB (2026)</h2>
+          </div>
+          <select id="chartSortSelect" class="brutal-select" aria-label="Ordenar gráfico">
+            <option value="desc">MAYOR CRECIMIENTO</option>
+            <option value="asc">MENOR CRECIMIENTO</option>
+            <option value="gdp">POR TAMAÑO DE PIB</option>
+          </select>
+        </div>
+
+        <div class="bar-chart-container" id="gdpBarChart"></div>
+      </article>
+
+      <article class="analytics-card">
+        <div class="card-head">
+          <div>
+            <span class="section-code">03 // ESTRUCTURA EXPORTADORA</span>
+            <h2 class="section-heading">Composición Comercial UE</h2>
+          </div>
+          <span class="meta-tag">TOTAL: 4.12 B €</span>
+        </div>
+
+        <div class="donut-layout">
+          <div class="donut-visual">
+            <svg viewBox="0 0 180 180" class="donut-svg">
+              <circle cx="90" cy="90" r="68" class="donut-ring-bg" />
+              <circle cx="90" cy="90" r="68" class="donut-segment seg-1" stroke-dasharray="162 427" stroke-dashoffset="0" />
+              <circle cx="90" cy="90" r="68" class="donut-segment seg-2" stroke-dasharray="115 427" stroke-dashoffset="-162" />
+              <circle cx="90" cy="90" r="68" class="donut-segment seg-3" stroke-dasharray="85 427" stroke-dashoffset="-277" />
+              <circle cx="90" cy="90" r="68" class="donut-segment seg-4" stroke-dasharray="65 427" stroke-dashoffset="-362" />
+            </svg>
+            <div class="donut-center">
+              <strong>100%</strong>
+              <span>INTRA-UE</span>
+            </div>
+          </div>
+
+          <ul class="donut-legend-list">
+            <li><span class="dot c1"></span>Maquinaria y Vehículos <strong>38%</strong></li>
+            <li><span class="dot c2"></span>Química y Farmacia <strong>27%</strong></li>
+            <li><span class="dot c3"></span>Manufacturas y Acero <strong>20%</strong></li>
+            <li><span class="dot c4"></span>Agroalimentación y Energía <strong>15%</strong></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="eur-trade-matrix">
+      <div class="stage-topbar">
+        <div>
+          <span class="section-code">04 // REGISTRO ESTADÍSTICO</span>
+          <h2 class="section-heading">Matriz Macroeconómica por País</h2>
+        </div>
+
+        <div class="matrix-controls">
+          <input type="search" id="countrySearchInput" class="brutal-input" placeholder="Buscar país o sector..." aria-label="Buscar país o sector" />
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>CÓDIGO</th>
+              <th>ECONOMÍA</th>
+              <th>BLOQUE</th>
+              <th>PIB NOMINAL</th>
+              <th>CRECIMIENTO</th>
+              <th>INFLACIÓN</th>
+              <th>BALANZA</th>
+              <th>SECTOR CLAVE</th>
+            </tr>
+          </thead>
+          <tbody id="macroTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="eur-simulator-drawer" id="simulador">
+      <div class="stage-topbar">
+        <div>
+          <span class="section-code">05 // LABORATORIO ECONOMÉTRICO</span>
+          <h2 class="section-heading">Simulador de Escenarios BCE & Fiscalidad</h2>
+        </div>
+        <button type="button" id="resetSimBtn" class="brutal-btn">RESTAURAR PARÁMETROS</button>
+      </div>
+
+      <div class="sim-grid">
+        <div class="sim-controls-col">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="rateSlider">TIPO DE INTERÉS BCE</label>
+              <strong id="rateValDisplay">3.25%</strong>
+            </div>
+            <input type="range" id="rateSlider" min="0" max="6" step="0.25" value="3.25" class="brutal-slider" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="energySlider">COSTE ENERGÉTICO (ÍNDICE BASE 100)</label>
+              <strong id="energyValDisplay">100 pts</strong>
+            </div>
+            <input type="range" id="energySlider" min="60" max="180" step="5" value="100" class="brutal-slider" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="stimulusSlider">INVERSIÓN NEXT-GEN / FONDOS UE</label>
+              <strong id="stimulusValDisplay">1.5% PIB</strong>
+            </div>
+            <input type="range" id="stimulusSlider" min="0" max="4" step="0.25" value="1.5" class="brutal-slider" />
+          </div>
+        </div>
+
+        <div class="sim-output-col">
+          <div class="sim-result-card">
+            <span>PROYECCIÓN PIB UE (12 MESES)</span>
+            <strong id="simGdpOut" class="up">+1.40%</strong>
+            <small>Sensibilidad calculada respecto al escenario base</small>
+          </div>
+
+          <div class="sim-result-card">
+            <span>INFLACIÓN PROYECTADA HICP</span>
+            <strong id="simInfOut">2.30%</strong>
+            <small>Objetivo de estabilidad BCE: 2.00%</small>
+          </div>
+
+          <div class="sim-result-card">
+            <span>ÍNDICE COMPETITIVIDAD INDUSTRIAL</span>
+            <strong id="simCompOut">104.2 pts</strong>
+            <small id="simStatusNote">Equilibrio macroeconómico estable</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="eur-footer">
+      <span>EUROSTAT // NEXUS — TERMINAL DE INTELIGENCIA ECONÓMICA EUROPEA</span>
+      <span>DESARROLLADO CON HTML5 · CSS3 · VANILLA JAVASCRIPT</span>
+    </footer>
+
+  </main>
+</body>
+</html>
