@@ -60,3 +60,61 @@ eurostat-nexus/
 ├── styles.css       # Sistema de variables, layout responsivo, transiciones y keyframes
 ├── app.js           # Dataset macroeconómico, motores de renderizado e interactividad
 └── README.md        # Documentación técnica del proyecto
+
+## Instalación y Ejecución Local
+
+Este proyecto está desarrollado con tecnologías web estándar (**HTML5, CSS3 y Vanilla JavaScript**), por lo que no requiere Node.js, gestores de paquetes (`npm`/`yarn`) ni procesos de empaquetado para ejecutarse.
+
+### Opción A: Clonar mediante terminal Git (Recomendado)
+1. Abre tu terminal y clona el repositorio en tu equipo:
+   ```bash
+   git clone [https://github.com/TU-USUARIO/eurostat-nexus.git](https://github.com/TU-USUARIO/eurostat-nexus.git)
+   ```
+2. Entra en el directorio del proyecto:
+   ```bash
+   cd eurostat-nexus
+   ```
+3. Abre la carpeta en **Visual Studio Code**:
+   ```bash
+   code .
+   ```
+4. Inicia un servidor local para que las rutas relativas y parámetros URL (`?code=ES`) funcionen en condiciones reales:
+   * **Con VS Code:** Instala la extensión **Live Server**, haz clic derecho sobre `index.html` y selecciona **"Open with Live Server"**.
+   * **Con Python (si lo tienes instalado):**
+     ```bash
+     python -m http.server 8000
+     ```
+     Después abre `http://localhost:8000` en tu navegador.
+
+### Opción B: Descarga directa
+1. En la página principal del repositorio en GitHub, pulsa el botón verde **`<> Code`** y selecciona **`Download ZIP`**.
+2. Descomprime el archivo y haz doble clic sobre `index.html` para abrirlo directamente en Chrome, Firefox o Edge.
+
+---
+
+## Despliegue en GitHub Pages
+
+Puedes alojar esta aplicación de forma gratuita y pública usando **GitHub Pages** en menos de dos minutos:
+
+1. Asegúrate de que todos tus archivos (`index.html`, `pais.html`, `comercio.html`, `sectores.html`, `divisas.html`, `styles.css`, `app.js` y `README.md`) estén subidos en la rama `main` de tu repositorio público.
+2. En GitHub, entra en la pestaña **Settings** (Configuración) en el menú superior del repositorio.
+3. En la barra lateral izquierda, baja hasta la sección **Code and automation** y haz clic en **Pages**.
+4. En el apartado **Build and deployment > Source**, selecciona **`Deploy from a branch`**.
+5. En **Branch**, selecciona **`main`** y deja la carpeta en **`/ (root)`**. Pulsa **Save**.
+6. Espera entre 30 segundos y 2 minutos y recarga la página; aparecerá un banner superior con el enlace público en vivo:
+   ```text
+   [https://TU-USUARIO.github.io/eurostat-nexus/](https://TU-USUARIO.github.io/eurostat-nexus/)
+   ```
+   *(Consejo para tu portfolio: copia esa URL y pégala también en el campo **Website** de la sección **About** en la página principal de tu repositorio).*
+
+---
+
+## Posibles Mejoras Futuras
+
+El proyecto está estructurado de forma modular para permitir futuras ampliaciones técnicas sin reescribir la base actual:
+
+* **Conexión a APIs Oficiales en Tiempo Real:** Sustituir los datasets estáticos por peticiones asíncronas (`fetch`) a la API pública del **Banco Central Europeo (ECB Data Portal)** para actualizar los tipos de cambio FX y rentabilidades de bonos, y a la **API REST de Eurostat** para indicadores macroeconómicos.
+* **Cobertura Completa de la UE-27:** Ampliar la cartografía SVG interactiva y el array `EUROPE_DATA` para incluir los 27 Estados miembros de la Unión Europea junto con países candidatos.
+* **Exportación de Datos y Reportes:** Añadir generación nativa de archivos **CSV** desde la matriz macroeconómica y exportación en **PDF** del dossier individual de cada país (`pais.html`).
+* **Comparativa Histórica Multi-anual:** Incorporar un selector de rango temporal (2015–2026) en las gráficas de barras y en los expedientes nacionales para analizar el impacto de ciclos económicos previos.
+* **Accesibilidad y Atajos de Teclado:** Implementar navegación por teclado estilo terminal bursátil (por ejemplo, pulsar `/` para enfocar el buscador de países o teclas numéricas `1`–`5` para cambiar entre vistas).
