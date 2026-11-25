@@ -25,14 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
 function initThemeToggle() {
   const btn = document.getElementById("themeToggleBtn");
   const label = document.getElementById("themeBtnText");
+  const savedTheme = localStorage.getItem("eur_theme");
+
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    if (label) label.textContent = "MODO PAPEL EDITORIAL";
+  }
+
+  if (!btn) return;
   btn.addEventListener("click", () => {
     const isDark = document.documentElement.getAttribute("data-theme") === "dark";
     if (isDark) {
       document.documentElement.removeAttribute("data-theme");
-      label.textContent = "MODO TERMINAL OSCURO";
+      localStorage.setItem("eur_theme", "light");
+      if (label) label.textContent = "MODO TERMINAL OSCURO";
     } else {
       document.documentElement.setAttribute("data-theme", "dark");
-      label.textContent = "MODO PAPEL EDITORIAL";
+      localStorage.setItem("eur_theme", "dark");
+      if (label) label.textContent = "MODO PAPEL EDITORIAL";
     }
   });
 }
@@ -64,6 +74,8 @@ function selectCountry(code) {
   });
 
   const inspector = document.getElementById("countryInspector");
+  if (!inspector) return;
+
   inspector.classList.remove("flash-update");
   void inspector.offsetWidth;
   inspector.classList.add("flash-update");
@@ -87,6 +99,12 @@ function selectCountry(code) {
   document.getElementById("inspSectorShare").textContent = `${country.share}%`;
   document.getElementById("inspSectorBar").style.width = `${country.share}%`;
   document.getElementById("inspSectorName").textContent = country.sector;
+
+  const detailLink = document.getElementById("inspDetailLink");
+  if (detailLink) {
+    detailLink.href = `pais.html?code=${country.code}`;
+    detailLink.textContent = `VER DOSSIER COMPLETO DE ${country.name.toUpperCase()} →`;
+  }
 }
 
 function initMapAndInspector() {
@@ -213,3 +231,41 @@ function initSimulator() {
     recalculate();
   });
 }
+
+function initPageTransitions() {
+  const curtain = document.createElement("div");
+  curtain.className = "page-curtain entering";
+  curtain.innerHTML = `
+    <span class="curtain-title">EUROSTAT // NEXUS</span>
+    <span class="curtain-sub">SINCRONIZANDO TERMINAL DE DATOS...</span>
+  `;
+  document.body.appendChild(curtain);
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      curtain.classList.remove("entering");
+      curtain.classList.add("leaving");
+      setTimeout(() => {
+        curtain.classList.remove("leaving");
+      }, 480);
+    }, 120);
+  });
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (!link) return;
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("http") || link.target === "_blank") return;
+
+    e.preventDefault();
+    curtain.classList.remove("leaving");
+    curtain.classList.add("entering");
+    setTimeout(() => {
+      window.location.href = href;
+    }, 430);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initPageTransitions();
+});
