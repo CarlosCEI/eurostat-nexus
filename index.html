@@ -73,3 +73,189 @@
         </div>
       </div>
     </header>
+
+    <section class="eur-kpi-ribbon" aria-label="Indicadores clave de la Unión Europea">
+      <article class="kpi-card">
+        <span class="kpi-label">PIB NOMINAL UE-27</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number" data-target="17.8" data-decimals="1">0.0</span>
+          <span class="kpi-unit">B €</span>
+        </div>
+        <span class="kpi-delta up">▲ +1.4% interanual</span>
+      </article>
+
+      <article class="kpi-card">
+        <span class="kpi-label">EXPORTACIONES INTRA-UE</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number" data-target="4120" data-decimals="0">0</span>
+          <span class="kpi-unit">MM €</span>
+        </div>
+        <span class="kpi-delta up">▲ +3.8% vs Q3</span>
+      </article>
+
+      <article class="kpi-card">
+        <span class="kpi-label">INFLACIÓN MEDIA EUROZONA</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number" data-target="2.3" data-decimals="1">0.0</span>
+          <span class="kpi-unit">%</span>
+        </div>
+        <span class="kpi-delta down">▼ -0.4 pts objetivo BCE</span>
+      </article>
+
+      <article class="kpi-card">
+        <span class="kpi-label">TASA DE EMPLEO (20-64 AÑOS)</span>
+        <div class="kpi-value-row">
+          <span class="kpi-number" data-target="75.6" data-decimals="1">0.0</span>
+          <span class="kpi-unit">%</span>
+        </div>
+        <span class="kpi-delta up">▲ Máximo histórico serie</span>
+      </article>
+    </section>
+
+    <section class="eur-map-stage">
+      <div class="stage-topbar">
+        <div class="stage-title-wrap">
+          <span class="section-code">01 // CARTOGRAFÍA ECONÓMICA</span>
+          <h2 class="section-heading">Mapa Interactivo de Potencias Europeas</h2>
+        </div>
+
+        <div class="region-filters" role="group" aria-label="Filtrar por bloque regional">
+          <button class="filter-chip active" data-region="all" type="button">EUROPA (12)</button>
+          <button class="filter-chip" data-region="core" type="button">EJE CENTRAL</button>
+          <button class="filter-chip" data-region="south" type="button">ARCO MEDITERRÁNEO</button>
+          <button class="filter-chip" data-region="north" type="button">NÓRDICOS & BÁLTICOS</button>
+        </div>
+      </div>
+
+      <div class="map-workspace">
+        <div class="map-canvas-box">
+          <svg id="europeMapSvg" viewBox="0 0 800 560" class="europe-svg" role="img" aria-label="Mapa esquemático interactivo de países europeos">
+            <g class="map-grid-lines" stroke="currentColor" stroke-opacity="0.08" stroke-width="1">
+              <line x1="0" y1="140" x2="800" y2="140" />
+              <line x1="0" y1="280" x2="800" y2="280" />
+              <line x1="0" y1="420" x2="800" y2="420" />
+              <line x1="200" y1="0" x2="200" y2="560" />
+              <line x1="400" y1="0" x2="400" y2="560" />
+              <line x1="600" y1="0" x2="600" y2="560" />
+            </g>
+
+            <g class="trade-routes">
+              <path d="M 355 285 Q 270 300 245 335" class="route-line" />
+              <path d="M 355 285 Q 375 350 385 415" class="route-line" />
+              <path d="M 355 285 Q 420 270 475 265" class="route-line" />
+              <path d="M 245 335 Q 190 390 155 445" class="route-line" />
+              <path d="M 355 285 Q 380 200 410 135" class="route-line" />
+            </g>
+
+            <g class="country-node" data-country="PT" data-region="south">
+              <polygon points="95,415 128,415 125,485 92,482" class="country-shape" />
+              <text x="110" y="454" class="country-code">PT</text>
+            </g>
+
+            <g class="country-node" data-country="ES" data-region="south">
+              <polygon points="132,405 225,400 232,445 195,492 128,486" class="country-shape" />
+              <text x="178" y="450" class="country-code">ES</text>
+            </g>
+
+            <g class="country-node" data-country="FR" data-region="core">
+              <polygon points="215,305 298,295 312,365 265,398 208,382" class="country-shape" />
+              <text x="260" y="350" class="country-code">FR</text>
+            </g>
+
+            <g class="country-node" data-country="IE" data-region="north">
+              <polygon points="150,225 186,225 182,268 146,265" class="country-shape" />
+              <text x="166" y="250" class="country-code">IE</text>
+            </g>
+
+            <g class="country-node" data-country="NL" data-region="core">
+              <polygon points="295,245 330,242 332,272 296,274" class="country-shape" />
+              <text x="313" y="262" class="country-code">NL</text>
+            </g>
+
+            <g class="country-node" data-country="BE" data-region="core">
+              <polygon points="282,276 322,275 320,296 280,295" class="country-shape" />
+              <text x="301" y="289" class="country-code">BE</text>
+            </g>
+
+            <g class="country-node active" data-country="DE" data-region="core">
+              <polygon points="334,235 415,232 422,315 332,318" class="country-shape" />
+              <text x="376" y="280" class="country-code">DE</text>
+            </g>
+
+            <g class="country-node" data-country="IT" data-region="south">
+              <polygon points="342,365 402,365 438,445 415,488 388,478 365,415" class="country-shape" />
+              <text x="385" y="420" class="country-code">IT</text>
+            </g>
+
+            <g class="country-node" data-country="PL" data-region="core">
+              <polygon points="424,225 518,222 524,295 426,298" class="country-shape" />
+              <text x="474" y="264" class="country-code">PL</text>
+            </g>
+
+            <g class="country-node" data-country="SE" data-region="north">
+              <polygon points="395,75 445,70 452,195 398,200" class="country-shape" />
+              <text x="424" y="142" class="country-code">SE</text>
+            </g>
+
+            <g class="country-node" data-country="FI" data-region="north">
+              <polygon points="462,68 518,68 522,178 465,180" class="country-shape" />
+              <text x="492" y="130" class="country-code">FI</text>
+            </g>
+
+            <g class="country-node" data-country="GR" data-region="south">
+              <polygon points="485,435 538,432 532,495 492,498" class="country-shape" />
+              <text x="512" y="468" class="country-code">GR</text>
+            </g>
+          </svg>
+
+          <div class="map-legend">
+            <span><i class="legend-swatch active"></i> PAÍS SELECCIONADO</span>
+            <span><i class="legend-swatch route"></i> CORREDOR COMERCIAL</span>
+          </div>
+        </div>
+
+        <aside class="eur-country-inspector" id="countryInspector" aria-live="polite">
+          <div class="inspector-header">
+            <div>
+              <span class="inspector-badge" id="inspRegion">EJE CENTRAL // EUROZONA</span>
+              <h3 class="inspector-name" id="inspName">Alemania (DE)</h3>
+            </div>
+            <span class="inspector-flag" id="inspCode">DE</span>
+          </div>
+
+          <p class="inspector-desc" id="inspDesc">
+            Principal potencia industrial y exportadora de la Unión Europea, impulsada por el sector automotriz, maquinaria pesada y química avanzada.
+          </p>
+
+          <div class="inspector-metrics-grid">
+            <div class="insp-metric">
+              <span>PIB NOMINAL</span>
+              <strong id="inspGdp">4.12 B €</strong>
+            </div>
+            <div class="insp-metric">
+              <span>CRECIMIENTO YoY</span>
+              <strong id="inspGrowth" class="up">+0.8%</strong>
+            </div>
+            <div class="insp-metric">
+              <span>INFLACIÓN</span>
+              <strong id="inspInflation">2.2%</strong>
+            </div>
+            <div class="insp-metric">
+              <span>BALANZA COMERCIAL</span>
+              <strong id="inspTrade" class="up">+210 MM €</strong>
+            </div>
+          </div>
+
+          <div class="inspector-sector-box">
+            <div class="sector-header">
+              <span>MOTOR EXPORTADOR PRINCIPAL</span>
+              <strong id="inspSectorShare">38%</strong>
+            </div>
+            <div class="sector-bar-bg">
+              <div class="sector-bar-fill" id="inspSectorBar" style="width: 38%;"></div>
+            </div>
+            <span class="sector-name" id="inspSectorName">Automoción e Ingeniería Mecánica</span>
+          </div>
+        </aside>
+      </div>
+    </section>
