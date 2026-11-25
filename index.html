@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUROSTAT // NEXUS — Terminal Macroeconómica Europea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="eur-ticker-bar" aria-label="Indicadores financieros en tiempo real">
+    <div class="ticker-badge">LIVE // EUROZONE</div>
+    <div class="ticker-track-wrapper">
+      <div class="ticker-track" id="tickerTrack">
+        <span class="ticker-item">EUR/USD <strong>1.0942</strong> <em class="up">+0.34%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">PIB UE-27 (YoY) <strong>+1.4%</strong> <em class="up">+0.2%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">INFLACIÓN HICP <strong>2.3%</strong> <em class="down">-0.1%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">TIPO BCE <strong>3.25%</strong> <em class="neutral">0.00%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BALANZA COMERCIAL <strong>+18.4B €</strong> <em class="up">+4.1%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">STOXX EUROPE 600 <strong>524.80</strong> <em class="up">+0.88%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/USD <strong>1.0942</strong> <em class="up">+0.34%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">PIB UE-27 (YoY) <strong>+1.4%</strong> <em class="up">+0.2%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">INFLACIÓN HICP <strong>2.3%</strong> <em class="down">-0.1%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">TIPO BCE <strong>3.25%</strong> <em class="neutral">0.00%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BALANZA COMERCIAL <strong>+18.4B €</strong> <em class="up">+4.1%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">STOXX EUROPE 600 <strong>524.80</strong> <em class="up">+0.88%</em></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="eur-shell">
+
+    <header class="eur-editorial-header">
+      <div class="header-meta-row">
+        <span class="meta-tag">EDICIÓN // Q4-2026</span>
+        <span class="meta-tag">FUENTE: EUROSTAT & BCE DATA</span>
+        <span class="meta-tag">PORTFOLIO PROJECT</span>
+      </div>
+
+      <div class="header-main-grid">
+        <div class="header-title-block">
+          <h1 class="editorial-title">
+            <span class="reveal-line">EUROSTAT <span class="accent-italic">//</span> NEXUS</span>
+          </h1>
+          <p class="editorial-subtitle">
+            Observatorio interactivo de comercio intraeuropeo, producto interior bruto, 
+            competitividad industrial y balanza fiscal de las economías de Europa.
+          </p>
+        </div>
+
+        <div class="header-controls">
+          <button id="themeToggleBtn" class="brutal-btn" type="button">
+            <span class="btn-dot"></span>
+            <span id="themeBtnText">MODO TERMINAL OSCURO</span>
+          </button>
+          <a href="#simulador" class="brutal-btn brutal-btn--accent">
+            ABRIR SIMULADOR MACRO ↓
+          </a>
+        </div>
+      </div>
+    </header>
