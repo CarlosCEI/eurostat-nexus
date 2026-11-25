@@ -1111,3 +1111,58 @@ body {
 .eur-modal-backdrop.open .eur-modal-box {
   transform: translateY(0) scale(1);
 }
+
+.fx-converter-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fx-big-input {
+  width: 100%;
+  font-size: 1.45rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--bg-surface);
+}
+
+.fx-rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 0.85rem;
+}
+
+.fx-card {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-color);
+  padding: 0.95rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fx-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--accent-klein);
+  background: var(--bg-surface);
+}
+
+.fx-card-head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-secondary);
+}
+
+.fx-card strong {
+  font-family: var(--font-serif);
+  font-size: 1.95rem;
+  line-height: 1.1;
+}
+
+.fx-card small {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-klein);
+}

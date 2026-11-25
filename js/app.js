@@ -448,3 +448,75 @@ function initClustersPage() {
 document.addEventListener("DOMContentLoaded", () => {
   initClustersPage();
 });
+
+const FX_RATES = [
+  { code: "USD", name: "Dólar Estadounidense", rate: 1.0942, symbol: "$" },
+  { code: "GBP", name: "Libra Esterlina", rate: 0.8345, symbol: "£" },
+  { code: "CHF", name: "Franco Suizo", rate: 0.9418, symbol: "CHF" },
+  { code: "SEK", name: "Corona Sueca", rate: 11.4250, symbol: "kr" },
+  { code: "PLN", name: "Zloty Polaco", rate: 4.3180, symbol: "zł" },
+  { code: "DKK", name: "Corona Danesa", rate: 7.4582, symbol: "kr" }
+];
+
+const BOND_SPREADS = [
+  { code: "DE", country: "Alemania (Bund)", yield10y: 2.28, spread: 0 },
+  { code: "NL", country: "Países Bajos", yield10y: 2.56, spread: 28 },
+  { code: "IE", country: "Irlanda", yield10y: 2.68, spread: 40 },
+  { code: "PT", country: "Portugal", yield10y: 2.86, spread: 58 },
+  { code: "ES", country: "España", yield10y: 2.98, spread: 70 },
+  { code: "FR", country: "Francia", yield10y: 3.04, spread: 76 },
+  { code: "PL", country: "Polonia", yield10y: 5.42, spread: 314 },
+  { code: "IT", country: "Italia", yield10y: 3.52, spread: 124 }
+];
+
+function initFxAndBondsPage() {
+  const fxGrid = document.getElementById("fxRatesGrid");
+  const amountInput = document.getElementById("fxAmountInput");
+  const spreadContainer = document.getElementById("spreadBarsContainer");
+
+  if (!fxGrid || !amountInput) return;
+
+  function renderFx() {
+    const eur = parseFloat(amountInput.value) || 0;
+    fxGrid.innerHTML = FX_RATES.map((fx) => {
+      const converted = (eur * fx.rate).toLocaleString("es-ES", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      return `
+        <div class="fx-card">
+          <div class="fx-card-head">
+            <span>EUR / ${fx.code}</span>
+            <span>1€ = ${fx.rate}</span>
+          </div>
+          <strong>${converted} ${fx.symbol}</strong>
+          <small>${fx.name}</small>
+        </div>
+      `;
+    }).join("");
+  }
+
+  amountInput.addEventListener("input", renderFx);
+  renderFx();
+
+  if (spreadContainer) {
+    const sorted = [...BOND_SPREADS].sort((a, b) => a.spread - b.spread);
+    const maxSpread = 150;
+    spreadContainer.innerHTML = sorted.map((b) => {
+      const pct = b.spread === 0 ? 4 : Math.min((b.spread / maxSpread) * 100, 100);
+      return `
+        <div class="bar-row" onclick="window.location.href='pais.html?code=${b.code}'" style="cursor:pointer" title="Ver dossier de ${b.country}">
+          <span class="bar-code">${b.code}</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: ${pct}%"></div>
+          </div>
+          <span class="bar-val">+${b.spread} bps</span>
+        </div>
+      `;
+    }).join("");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initFxAndBondsPage();
+});

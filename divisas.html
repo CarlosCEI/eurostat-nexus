@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIVISAS & DEUDA // EUROSTAT NEXUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div class="eur-ticker-bar" aria-label="Indicadores financieros en tiempo real">
+    <div class="ticker-badge">LIVE // FX & BONDS</div>
+    <div class="ticker-track-wrapper">
+      <div class="ticker-track">
+        <span class="ticker-item">EUR/USD <strong>1.0942</strong> <em class="up">+0.34%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/CHF <strong>0.9418</strong> <em class="down">-0.12%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/SEK <strong>11.4250</strong> <em class="up">+0.21%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/PLN <strong>4.3180</strong> <em class="down">-0.18%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BUND ALEMÁN 10Y <strong>2.28%</strong> <em class="neutral">+1 bp</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BONO ESPAÑOL 10Y <strong>2.98%</strong> <em class="down">-2 bps</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/USD <strong>1.0942</strong> <em class="up">+0.34%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/CHF <strong>0.9418</strong> <em class="down">-0.12%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/SEK <strong>11.4250</strong> <em class="up">+0.21%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EUR/PLN <strong>4.3180</strong> <em class="down">-0.18%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BUND ALEMÁN 10Y <strong>2.28%</strong> <em class="neutral">+1 bp</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">BONO ESPAÑOL 10Y <strong>2.98%</strong> <em class="down">-2 bps</em></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="eur-shell">
+
+    <header class="eur-editorial-header">
+      <div class="header-meta-row">
+        <span class="meta-tag">MERCADO MONETARIO // Q4-2026</span>
+        <span class="meta-tag">BCE & BANCOS CENTRALES</span>
+        <span class="meta-tag">FX & SPREADS 10Y</span>
+      </div>
+
+      <div class="header-main-grid">
+        <div class="header-title-block">
+          <h1 class="editorial-title">
+            <span class="reveal-line">DIVISAS <span class="accent-italic">&</span> DEUDA 10Y</span>
+          </h1>
+          <p class="editorial-subtitle">
+            Conversor instantáneo de divisas europeas (Eurozona y mercados No-Euro) y monitor 
+            de rentabilidad de bonos soberanos y primas de riesgo frente al Bund alemán.
+          </p>
+        </div>
+
+        <div class="header-controls">
+          <button id="themeToggleBtn" class="brutal-btn" type="button">
+            <span class="btn-dot"></span>
+            <span id="themeBtnText">MODO TERMINAL OSCURO</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="eur-nav-tabs" aria-label="Navegación principal">
+        <a href="index.html" class="nav-tab-link">01 // PANEL GENERAL UE</a>
+        <a href="pais.html?code=ES" class="nav-tab-link">02 // DOSSIER POR PAÍS</a>
+        <a href="comercio.html" class="nav-tab-link">03 // CORREDORES BILATERALES</a>
+        <a href="sectores.html" class="nav-tab-link">04 // CLÚSTERES ESTRATÉGICOS</a>
+        <a href="divisas.html" class="nav-tab-link active">05 // DIVISAS & DEUDA</a>
+      </nav>
+    </header>
+
+    <section class="eur-analytics-grid">
+      <article class="analytics-card">
+        <div class="card-head">
+          <div>
+            <span class="section-code">MESA DE CAMBIO // FX</span>
+            <h2 class="section-heading">Conversor de Divisas Europeas</h2>
+          </div>
+          <span class="meta-tag">BASE: EURO (EUR)</span>
+        </div>
+
+        <div class="fx-converter-box">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="fxAmountInput">IMPORTE EN EUROS (€)</label>
+              <span class="meta-tag">EUR</span>
+            </div>
+            <input type="number" id="fxAmountInput" class="brutal-input fx-big-input" value="1000" min="0" step="50" />
+          </div>
+
+          <div class="fx-rates-grid" id="fxRatesGrid"></div>
+        </div>
+      </article>
+
+      <article class="analytics-card">
+        <div class="card-head">
+          <div>
+            <span class="section-code">RENTA FIJA SOBERANA</span>
+            <h2 class="section-heading">Primas de Riesgo 10Y (vs Bund)</h2>
+          </div>
+          <span class="meta-tag">PUNTOS BÁSICOS (BPS)</span>
+        </div>
+
+        <div class="bar-chart-container" id="spreadBarsContainer"></div>
+      </article>
+    </section>
+
+    <footer class="eur-footer">
+      <span>EUROSTAT // NEXUS — TERMINAL MONETARIA Y DE RENTA FIJA EUROPEA</span>
+      <a href="index.html" class="nav-tab-link">← VOLVER AL MAPA GENERAL</a>
+    </footer>
+
+  </main>
+</body>
+</html>
