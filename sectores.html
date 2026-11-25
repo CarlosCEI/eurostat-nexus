@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SECTORES ESTRATÉGICOS // EUROSTAT NEXUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div class="eur-ticker-bar" aria-label="Indicadores financieros en tiempo real">
+    <div class="ticker-badge">LIVE // EUROZONE</div>
+    <div class="ticker-track-wrapper">
+      <div class="ticker-track">
+        <span class="ticker-item">TRANSICIÓN VERDE UE <strong>46.8% RENOVABLE</strong> <em class="up">+4.2%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CHIPS ACT INVERSIÓN <strong>43.0 MM €</strong> <em class="up">ACTIVO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">I+D SOBRE PIB UE <strong>2.24%</strong> <em class="up">+0.12%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EXPORTACIÓN PHARMA <strong>+118 MM €</strong> <em class="up">+6.4%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">TRANSICIÓN VERDE UE <strong>46.8% RENOVABLE</strong> <em class="up">+4.2%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">CHIPS ACT INVERSIÓN <strong>43.0 MM €</strong> <em class="up">ACTIVO</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">I+D SOBRE PIB UE <strong>2.24%</strong> <em class="up">+0.12%</em></span>
+        <span class="ticker-sep">///</span>
+        <span class="ticker-item">EXPORTACIÓN PHARMA <strong>+118 MM €</strong> <em class="up">+6.4%</em></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="eur-shell">
+
+    <header class="eur-editorial-header">
+      <div class="header-meta-row">
+        <span class="meta-tag">INDUSTRIA & I+D // Q4-2026</span>
+        <span class="meta-tag">SOBERANÍA TECNOLÓGICA</span>
+        <span class="meta-tag">EUROSTAT CLUSTERS</span>
+      </div>
+
+      <div class="header-main-grid">
+        <div class="header-title-block">
+          <h1 class="editorial-title">
+            <span class="reveal-line">CLÚSTERES <span class="accent-italic">//</span> ESTRATÉGICOS</span>
+          </h1>
+          <p class="editorial-subtitle">
+            Mapa sectorial de competitividad europea: semiconductores, biofarmacia, transición energética 
+            e industria aeroespacial con filtro interactivo por cadena de valor.
+          </p>
+        </div>
+
+        <div class="header-controls">
+          <button id="themeToggleBtn" class="brutal-btn" type="button">
+            <span class="btn-dot"></span>
+            <span id="themeBtnText">MODO TERMINAL OSCURO</span>
+          </button>
+          <button id="exportBriefBtn" class="brutal-btn brutal-btn--accent" type="button">
+            GENERAR INFORME EJECUTIVO ↗
+          </button>
+        </div>
+      </div>
+
+      <nav class="eur-nav-tabs" aria-label="Navegación principal">
+        <a href="index.html" class="nav-tab-link">01 // PANEL GENERAL UE</a>
+        <a href="pais.html?code=ES" class="nav-tab-link">02 // DOSSIER POR PAÍS</a>
+        <a href="comercio.html" class="nav-tab-link">03 // CORREDORES BILATERALES</a>
+        <a href="sectores.html" class="nav-tab-link active">04 // CLÚSTERES ESTRATÉGICOS</a>
+      </nav>
+    </header>
+
+    <section class="eur-map-stage">
+      <div class="stage-topbar">
+        <div>
+          <span class="section-code">FILTRO POR CADENA DE VALOR</span>
+          <h2 class="section-heading">Motores Industriales de Europa</h2>
+        </div>
+
+        <div class="region-filters" id="sectorFilterGroup">
+          <button class="filter-chip active" data-cluster="all" type="button">TODOS LOS CLÚSTERES</button>
+          <button class="filter-chip" data-cluster="tech" type="button">TECH & CHIPS</button>
+          <button class="filter-chip" data-cluster="green" type="button">ENERGÍA & VERDE</button>
+          <button class="filter-chip" data-cluster="industry" type="button">INDUSTRIA & PHARMA</button>
+        </div>
+      </div>
+
+      <div class="sector-cards-grid" id="sectorCardsGrid"></div>
+    </section>
+
+    <footer class="eur-footer">
+      <span>EUROSTAT // NEXUS — OBSERVATORIO DE POLÍTICA INDUSTRIAL EUROPEA</span>
+      <a href="index.html" class="nav-tab-link">← VOLVER AL MAPA GENERAL</a>
+    </footer>
+
+  </main>
+
+  <div class="eur-modal-backdrop" id="reportModal" aria-hidden="true">
+    <div class="eur-modal-box">
+      <div class="inspector-header">
+        <div>
+          <span class="inspector-badge">SÍNTESIS EJECUTIVA // EUROSTAT NEXUS</span>
+          <h3 class="inspector-name">Resumen Macroeconómico UE-27</h3>
+        </div>
+        <button type="button" id="closeModalBtn" class="brutal-btn">CERRAR ✕</button>
+      </div>
+      <p class="inspector-desc" id="modalReportText" style="margin: 1rem 0;">
+        La Unión Europea mantiene una expansión moderada (+1.4% interanual) liderada por el dinamismo del arco mediterráneo y Europa central, con un superávit comercial consolidado de +18.4B € y una inflación convergiendo hacia el objetivo del 2.0% del BCE.
+      </p>
+      <div class="inspector-actions">
+        <button type="button" id="copyReportBtn" class="brutal-btn brutal-btn--accent">
+          COPIAR INFORME AL PORTAPAPELES
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -380,3 +380,71 @@ document.addEventListener("DOMContentLoaded", () => {
   initCountryDossierPage();
   initBilateralPage();
 });
+
+const CLUSTERS_DATA = [
+  { id: "tech", tag: "TECH & CHIPS", title: "Semiconductores y Litografía", leaders: "NL · DE · IE", volume: "148 MM €", growth: "+7.4%", desc: "Cadena de suministro europea de equipos de litografía ultravioleta extrema y diseño de microprocesadores.", linkCode: "NL" },
+  { id: "green", tag: "ENERGÍA & VERDE", title: "Hidrógeno Verde y Eólica Offshore", leaders: "ES · SE · DK", volume: "215 MM €", growth: "+9.1%", desc: "Despliegue de interconexiones eléctricas, electrolizadores industriales y generación renovable competitiva.", linkCode: "ES" },
+  { id: "industry", tag: "INDUSTRIA & PHARMA", title: "Biofarmacia y Química Avanzada", leaders: "BE · DE · IE", volume: "310 MM €", growth: "+5.8%", desc: "Producción de principios activos, biotecnología clínica y exportación farmacéutica de alto valor añadido.", linkCode: "BE" },
+  { id: "industry", tag: "INDUSTRIA & PHARMA", title: "Movilidad Eléctrica y Bienes de Equipo", leaders: "DE · FR · IT", volume: "490 MM €", growth: "+3.2%", desc: "Electrificación de plataformas automotrices, robótica industrial y maquinaria de precisión.", linkCode: "DE" },
+  { id: "tech", tag: "TECH & CHIPS", title: "Redes 5G/6G y Software Cloud", leaders: "FI · SE · ES", volume: "175 MM €", growth: "+6.5%", desc: "Infraestructura crítica de telecomunicaciones, ciberseguridad y centros de datos soberanos europeos.", linkCode: "FI" },
+  { id: "green", tag: "ENERGÍA & VERDE", title: "Acero Verde y Economía Circular", leaders: "SE · PL · AT", volume: "132 MM €", growth: "+4.9%", desc: "Descarbonización de la metalurgia pesada mediante reducción directa con hidrógeno sin emisiones.", linkCode: "SE" }
+];
+
+function initClustersPage() {
+  const grid = document.getElementById("sectorCardsGrid");
+  if (!grid) return;
+
+  function renderClusters(filter) {
+    const list = filter === "all" ? CLUSTERS_DATA : CLUSTERS_DATA.filter((c) => c.id === filter);
+    grid.innerHTML = list.map((c) => `
+      <article class="cluster-card">
+        <div class="cluster-top">
+          <span class="meta-tag">${c.tag}</span>
+          <strong class="up">${c.growth} YoY</strong>
+        </div>
+        <h3 class="cluster-title">${c.title}</h3>
+        <p class="inspector-desc">${c.desc}</p>
+        <div class="inspector-metrics-grid">
+          <div class="insp-metric"><span>VOLUMEN ANUAL</span><strong>${c.volume}</strong></div>
+          <div class="insp-metric"><span>HUBS LÍDERES</span><strong>${c.leaders}</strong></div>
+        </div>
+        <a href="pais.html?code=${c.linkCode}" class="brutal-btn">VER ECONOMÍA LÍDER (${c.linkCode}) →</a>
+      </article>
+    `).join("");
+  }
+
+  document.querySelectorAll("#sectorFilterGroup .filter-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("#sectorFilterGroup .filter-chip").forEach((b) => b.classList.remove("active"));
+      chip.classList.add("active");
+      renderClusters(chip.dataset.cluster);
+    });
+  });
+
+  renderClusters("all");
+
+  const modal = document.getElementById("reportModal");
+  const openBtn = document.getElementById("exportBriefBtn");
+  const closeBtn = document.getElementById("closeModalBtn");
+  const copyBtn = document.getElementById("copyReportBtn");
+
+  if (openBtn && modal) {
+    openBtn.addEventListener("click", () => modal.classList.add("open"));
+    closeBtn.addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+    copyBtn.addEventListener("click", () => {
+      const txt = document.getElementById("modalReportText").textContent.trim();
+      navigator.clipboard.writeText(txt);
+      copyBtn.textContent = "INFORME COPIADO ✓";
+      setTimeout(() => {
+        copyBtn.textContent = "COPIAR INFORME AL PORTAPAPELES";
+      }, 2000);
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initClustersPage();
+});
