@@ -57,9 +57,14 @@ eurostat-nexus/
 ├── comercio.html    # Vista 03: Comparador bilateral entre socios comerciales
 ├── sectores.html    # Vista 04: Clústeres industriales y modal de síntesis ejecutiva
 ├── divisas.html     # Vista 05: Conversor FX europeo y primas de riesgo a 10 años
-├── styles.css       # Sistema de variables, layout responsivo, transiciones y keyframes
-├── app.js           # Dataset macroeconómico, motores de renderizado e interactividad
+├── css/
+│   └── style.css    # Sistema de variables, layout responsivo, transiciones y keyframes
+├── js/
+│   └── app.js       # Dataset macroeconómico, motores de renderizado e interactividad
 └── README.md        # Documentación técnica del proyecto
+```
+
+---
 
 ## Instalación y Ejecución Local
 
@@ -68,7 +73,7 @@ Este proyecto está desarrollado con tecnologías web estándar (**HTML5, CSS3 y
 ### Opción A: Clonar mediante terminal Git (Recomendado)
 1. Abre tu terminal y clona el repositorio en tu equipo:
    ```bash
-   git clone [https://github.com/TU-USUARIO/eurostat-nexus.git](https://github.com/TU-USUARIO/eurostat-nexus.git)
+   git clone https://github.com/TU-USUARIO/eurostat-nexus.git
    ```
 2. Entra en el directorio del proyecto:
    ```bash
@@ -96,14 +101,14 @@ Este proyecto está desarrollado con tecnologías web estándar (**HTML5, CSS3 y
 
 Puedes alojar esta aplicación de forma gratuita y pública usando **GitHub Pages** en menos de dos minutos:
 
-1. Asegúrate de que todos tus archivos (`index.html`, `pais.html`, `comercio.html`, `sectores.html`, `divisas.html`, `styles.css`, `app.js` y `README.md`) estén subidos en la rama `main` de tu repositorio público.
+1. Asegúrate de que todos tus archivos (`index.html`, `pais.html`, `comercio.html`, `sectores.html`, `divisas.html`, `css/style.css`, `js/app.js` y `README.md`) estén subidos en la rama `main` de tu repositorio público.
 2. En GitHub, entra en la pestaña **Settings** (Configuración) en el menú superior del repositorio.
 3. En la barra lateral izquierda, baja hasta la sección **Code and automation** y haz clic en **Pages**.
 4. En el apartado **Build and deployment > Source**, selecciona **`Deploy from a branch`**.
 5. En **Branch**, selecciona **`main`** y deja la carpeta en **`/ (root)`**. Pulsa **Save**.
 6. Espera entre 30 segundos y 2 minutos y recarga la página; aparecerá un banner superior con el enlace público en vivo:
    ```text
-   [https://TU-USUARIO.github.io/eurostat-nexus/](https://TU-USUARIO.github.io/eurostat-nexus/)
+   https://TU-USUARIO.github.io/eurostat-nexus/
    ```
    *(Consejo para tu portfolio: copia esa URL y pégala también en el campo **Website** de la sección **About** en la página principal de tu repositorio).*
 
